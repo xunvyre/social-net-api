@@ -1,4 +1,4 @@
-const {User} = require('../models');
+const {User, Thought} = require('../models');
 
 const userController =
 {
@@ -81,11 +81,11 @@ const userController =
             User.updateMany
             (
                 {_id : {$in: dbUserData.friends}},
-                {$pull: { friends: params.id}}
+                {$pull: {friends: params.id}}
             )
             .then(() =>
             {
-                Thought.deleteMany({username : dbUserData.username})
+                Thought.deleteMany({username: dbUserData.username})
                 .then(() =>
                 {
                     res.json({message: `User deleted successfully.`});
@@ -110,7 +110,7 @@ const userController =
         .populate
         ({
             path: 'friends',
-            select: ('-__v')
+            select: '-__v'
         })
         .select('-__v')
         .then(dbUserData =>
@@ -136,7 +136,7 @@ const userController =
         .populate
         ({
             path: 'friends',
-            select: ('-__v')
+            select: '-__v'
         })
         .select('-__v')
         .then(dbUserData =>

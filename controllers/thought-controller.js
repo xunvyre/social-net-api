@@ -126,7 +126,7 @@ const thoughtController =
         .populate
         ({
             path: 'reactions',
-            select: ('-__v')
+            select: '-__v'
         })
         .select('-__v')
         .then(dbThoughtData =>
