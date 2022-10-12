@@ -16,9 +16,9 @@ const userController =
         })
     },
 
-    getUserById({ params }, res)
+    getUserById({params}, res)
     {
-        User.findOne({ _id: params.id })
+        User.findOne({ _id: params.id})
         .populate
         ([
             {path: 'thoughts', select: '-__v'},
@@ -75,7 +75,7 @@ const userController =
         {
             if (!dbUserData)
             {
-                res.status(404).json({ message: `No user found under this ID!`});
+                res.status(404).json({message: `No user found under this ID!`});
                 return;
             }
             User.updateMany
@@ -96,6 +96,8 @@ const userController =
         })
         .catch(err => res.status(400).json(err));
     },
+
+    //POST new friend, DELETE friend
 };
 
 module.exports = userController;
